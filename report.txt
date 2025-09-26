@@ -1,0 +1,53 @@
+i want to make only admin panel admin can Manage with complete file and folder structure dont skip any part
+category category name, short decription , image manage with crud 
+Fountain list 
+tittle ,Meta Description , more info with cke editor and image upload feature image and also upload multi image and upload catelog 
+
+blog category 
+blog post tittle meta description image more info with cke editor 
+Complete seo rich 
+17/09/2025
+.........................
+design home page 
+MASITOR TECHNOLOGY COMPANIES 
+https://demo.viraladsmedia.in/
+
+work on fountain website 
+backned admin panel functionalty 
+
+Masitortechnology/
+│   ├── categories/
+│   │   ├── edit.php
+│   │   └── delete.php
+│   ├── fountains/
+│   │   ├── index.php
+│   │   ├── edit.php
+│   │   └── delete.php
+│   ├── blog/
+│   │   ├── categories/
+│   │   │   ├── index.php
+│   │   │   ├── add.php
+│   │   │   ├── edit.php
+│   │   │   └── delete.php
+│   │   ├── posts/
+│   │   │   ├── index.php
+│   │   │   ├── add.php
+│   │   │   ├── edit.php
+│   │   │   └── delete.php
+│   ├── uploads/
+│   │   ├── categories/
+│   │   ├── fountains/
+│   │   ├── blog/
+│   │   └── catalogs/
+│   └── includes/
+│       ├── header.php
+│       ├── sidebar.php
+│       ├── footer.php
+│       └── functions.php
+├── assets/
+│   └── admin/
+│       ├── css/
+│       ├── js/
+│       └── lib/
+│           └── ckeditor/
+
