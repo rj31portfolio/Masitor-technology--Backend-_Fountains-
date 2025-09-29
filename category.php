@@ -27,7 +27,7 @@ if (!$category) {
 
 // Fetch all fountains in this category
 $fountains = [];
-$fountainStmt = $conn->prepare("SELECT id, title, slug, feature_image, meta_description FROM fountains WHERE category_id = ? AND status = 'active' ORDER BY id DESC");
+$fountainStmt = $conn->prepare("SELECT id, title, slug, feature_image, meta_description, mrp_price, selling_price FROM fountains WHERE category_id = ? AND status = 'active' ORDER BY id DESC");
 $fountainStmt->bind_param('i', $category['id']);
 $fountainStmt->execute();
 $fountainResult = $fountainStmt->get_result();
@@ -75,6 +75,20 @@ $conn->close();
               <img src="<?php echo BASE_URL; ?>admin/fountains/uploads/fountains/<?php echo htmlspecialchars($fountain['feature_image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($fountain['title']); ?>">
               <div class="card-body">
                 <h5 class="card-title"><?php echo htmlspecialchars($fountain['title']); ?></h5>
+                <?php if (!empty($fountain['mrp_price']) || !empty($fountain['selling_price'])): ?>
+                  <div class="mb-2">
+                    <?php if (!empty($fountain['mrp_price'])): ?>
+                      <span class="text-muted" style="text-decoration:line-through;">
+                        MRP: ₹<?php echo number_format($fountain['mrp_price'], 2); ?>
+                      </span>
+                    <?php endif; ?>
+                    <?php if (!empty($fountain['selling_price'])): ?>
+                      <span class="fw-bold text-success ms-2">
+                        Price: ₹<?php echo number_format($fountain['selling_price'], 2); ?>
+                      </span>
+                    <?php endif; ?>
+                  </div>
+                <?php endif; ?>
                 <p class="card-text"><?php echo htmlspecialchars($fountain['meta_description']); ?></p>
                 <a href="fountain-details.php?slug=<?php echo urlencode($fountain['slug']); ?>" class="btn-style1 text-white btn-sm">View Details</a>
               </div>

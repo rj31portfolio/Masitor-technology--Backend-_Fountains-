@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$error) {
             // Insert into database (add category_id)
-            $sql = "INSERT INTO fountains (category_id, title, slug, meta_description, feature_image, content, catalog_file, status) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO fountains (category_id, title, slug, meta_description, feature_image, content, catalog_file, youtube_link, mrp_price, selling_price, status) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('isssssss', $categoryId, $title, $slug, $metaDescription, $featureImage, $content, $catalogFile, $status);
+            $stmt->bind_param('isssssssdss', $categoryId, $title, $slug, $metaDescription, $featureImage, $content, $catalogFile, $youtubeLink, $mrpPrice, $sellingPrice, $status);
             
             if ($stmt->execute()) {
                 $fountainId = $stmt->insert_id;
@@ -191,6 +191,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="active" <?php echo (isset($_POST['status']) && $_POST['status'] === 'active') ? 'selected' : ''; ?>>Active</option>
                         <option value="inactive" <?php echo (isset($_POST['status']) && $_POST['status'] === 'inactive') ? 'selected' : ''; ?>>Inactive</option>
                     </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mrp_price">MRP Price</label>
+                    <input type="number" step="0.01" id="mrp_price" name="mrp_price" class="form-control"
+                           value="<?php echo isset($_POST['mrp_price']) ? htmlspecialchars($_POST['mrp_price']) : ''; ?>"
+                           placeholder="Enter MRP Price">
+                </div>
+                <div class="form-group">
+                    <label for="selling_price">Selling Price</label>
+                    <input type="number" step="0.01" id="selling_price" name="selling_price" class="form-control"
+                           value="<?php echo isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : ''; ?>"
+                           placeholder="Enter Selling Price">
                 </div>
                 
                 <div class="form-actions">

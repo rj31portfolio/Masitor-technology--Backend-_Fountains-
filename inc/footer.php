@@ -1,7 +1,7 @@
 <?php require_once 'config.php'; ?>
 <!-- FOOTER
 ================================================== -->
-<footer class="position-relative bg-secondary pt-2-6 pt-sm-6 pt-xxl-8">
+<footer class="position-relative bg-secondary pt-2-6 pt-sm-6 pt-xxl-8 mt-20">
     <div class="container">
         <div class="row mt-n1-9 mb-2-6 mb-sm-6 mb-xxl-8">
             <div class="col-xl-4 mt-1-9">

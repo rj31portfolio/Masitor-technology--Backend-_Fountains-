@@ -51,7 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $removeFeatureImage = isset($_POST['remove_feature_image']);
     $removeCatalogFile = isset($_POST['remove_catalog_file']);
     $categoryId = (int)$_POST['category_id'];
-    $youtubeLink = isset($_POST['youtube_link']) ? trim($_POST['youtube_link']) : null; // <-- Add this line
+    $youtubeLink = isset($_POST['youtube_link']) ? trim($_POST['youtube_link']) : null;
+
+    // New: Get price fields
+    $mrpPrice = isset($_POST['mrp_price']) ? floatval($_POST['mrp_price']) : null;
+    $sellingPrice = isset($_POST['selling_price']) ? floatval($_POST['selling_price']) : null;
 
     // Validate inputs
     if (empty($title)) {
@@ -138,12 +142,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         if (!$error) {
-            // Update fountain (add youtube_link)
+            // Update fountain (add mrp_price and selling_price)
             $sql = "UPDATE fountains SET title = ?, slug = ?, meta_description = ?, feature_image = ?, 
-                    content = ?, catalog_file = ?, youtube_link = ?, status = ?, category_id = ? WHERE id = ?";
+                    content = ?, catalog_file = ?, youtube_link = ?, mrp_price = ?, selling_price = ?, status = ?, category_id = ? WHERE id = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ssssssssii', $title, $slug, $metaDescription, $featureImage, 
-                             $content, $catalogFile, $youtubeLink, $status, $categoryId, $fountainId);
+            $stmt->bind_param('ssssssssdsii', $title, $slug, $metaDescription, $featureImage, 
+                             $content, $catalogFile, $youtubeLink, $mrpPrice, $sellingPrice, $status, $categoryId, $fountainId);
 
             if ($stmt->execute()) {
                 $_SESSION['success'] = 'Fountain updated successfully!';
@@ -293,6 +297,21 @@ $conn->close();
                     <input type="url" id="youtube_link" name="youtube_link" class="form-control"
                         value="<?php echo isset($_POST['youtube_link']) ? htmlspecialchars($_POST['youtube_link']) : htmlspecialchars($fountain['youtube_link'] ?? ''); ?>"
                         placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <!-- MRP Price Field -->
+                <div class="form-group">
+                    <label for="mrp_price">MRP Price</label>
+                    <input type="number" step="0.01" id="mrp_price" name="mrp_price" class="form-control"
+                        value="<?php echo isset($_POST['mrp_price']) ? htmlspecialchars($_POST['mrp_price']) : htmlspecialchars($fountain['mrp_price'] ?? ''); ?>"
+                        placeholder="Enter MRP Price">
+                </div>
+                <!-- Selling Price Field -->
+                <div class="form-group">
+                    <label for="selling_price">Selling Price</label>
+                    <input type="number" step="0.01" id="selling_price" name="selling_price" class="form-control"
+                        value="<?php echo isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : htmlspecialchars($fountain['selling_price'] ?? ''); ?>"
+                        placeholder="Enter Selling Price">
                 </div>
                 
                 <div class="form-actions">

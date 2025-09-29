@@ -5,7 +5,7 @@ require_once __DIR__."/inc/head.php";
 // Fetch all active categories
 $conn = getDBConnection();
 $categories = [];
-$result = $conn->query("SELECT id, name, slug, image, short_description FROM categories WHERE status='active' ORDER BY id ASC");
+$result = $conn->query("SELECT id, name, slug, image, short_description FROM categories WHERE status='active' ORDER BY id ASC LIMIT 8");
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $categories[] = $row;

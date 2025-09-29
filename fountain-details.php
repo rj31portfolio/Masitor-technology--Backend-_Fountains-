@@ -94,6 +94,22 @@ if (!empty($fountain['youtube_link'])) {
       <!-- Details -->
       <div class="col-lg-6">
         <h2><?php echo htmlspecialchars($fountain['title']); ?></h2>
+        
+        <?php if (!empty($fountain['mrp_price']) || !empty($fountain['selling_price'])): ?>
+          <div class="mb-3">
+            <?php if (!empty($fountain['mrp_price'])): ?>
+              <span class="text-muted" style="text-decoration:line-through;">
+                MRP: ₹<?php echo number_format($fountain['mrp_price'], 2); ?>
+              </span>
+            <?php endif; ?>
+            <?php if (!empty($fountain['selling_price'])): ?>
+              <span class="fw-bold text-success ms-2">
+                Price: ₹<?php echo number_format($fountain['selling_price'], 2); ?>
+              </span>
+            <?php endif; ?>
+          </div>
+        <?php endif; ?>
+
         <p class="text-muted"><?php echo htmlspecialchars($fountain['meta_description']); ?></p>
         <div class="mb-3">
           <?php echo $fountain['content']; // Assuming safe HTML ?>
