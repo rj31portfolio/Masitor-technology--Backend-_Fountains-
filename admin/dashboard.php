@@ -57,7 +57,7 @@ requireAdminAuth();
                 <a href="<?= ADMIN_URL ?>fountains/" class="stat-link">View All <i class="fas fa-arrow-right"></i></a>
             </div>
             
-            <div class="stat-card">
+          <!--  <div class="stat-card">
                 <div class="stat-icon" style="background: #ffc107;">
                     <i class="fas fa-blog"></i>
                 </div>
@@ -73,9 +73,9 @@ requireAdminAuth();
                     <p>Blog Posts</p>
                 </div>
                 <a href="<?= ADMIN_URL ?>blog/posts/" class="stat-link">View All <i class="fas fa-arrow-right"></i></a>
-            </div>
+            </div> -->
             
-            <div class="stat-card">
+         <!--   <div class="stat-card">
                 <div class="stat-icon" style="background: #dc3545;">
                     <i class="fas fa-folder"></i>
                 </div>
@@ -91,7 +91,7 @@ requireAdminAuth();
                     <p>Blog Categories</p>
                 </div>
                 <a href="<?= ADMIN_URL ?>blog/categories/" class="stat-link">View All <i class="fas fa-arrow-right"></i></a>
-            </div>
+            </div> -->
         </div>
         
         <div class="recent-activity">

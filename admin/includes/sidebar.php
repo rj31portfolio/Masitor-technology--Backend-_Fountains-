@@ -27,7 +27,7 @@
             </a>
         </li>
         
-        <li class="menu-divider"><span>Blog Management</span></li>
+   <!--     <li class="menu-divider"><span>Blog Management</span></li>
         
         <li>
             <a href="<?= ADMIN_URL ?>blog/categories/" class="<?php echo strpos($_SERVER['PHP_SELF'], 'blog/categories') !== false ? 'active' : ''; ?>">
@@ -40,7 +40,7 @@
             </a>
         </li>
         
-        <li class="menu-divider"><span>Settings</span></li>
+        <li class="menu-divider"><span>Settings</span></li> -->
         
        <!-- <li>
             <a href="<?//= ADMIN_URL ?>settings.php" class="<?php //echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>">
