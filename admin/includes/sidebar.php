@@ -49,4 +49,3 @@
         </li>  -->
     </ul>
 </nav>
-i want to make project for b2b and b2c as e commerse palteform admin can manage with crud category , products and blogs and admin setting all of permistions for subadmin and all overders and status and shipping information with order page use razor pay for payement process and frontend show all category products and others according you need as e commerse plateform complete make as cms man admin can manage all project adn website setting like logo and other adress and seo manage so this project make html css javascript php mysql without framwork use so give me advance promt for ai detailed explaination complete working all features with project structure and complete project make in zipfile with code 
