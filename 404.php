@@ -43,6 +43,6 @@
         </div>
     </section>
 
-    <!-- FOOTER
+<!-- FOOTER
 ================================================== -->
 <?php require_once __DIR__."/inc/footer.php"; ?>
