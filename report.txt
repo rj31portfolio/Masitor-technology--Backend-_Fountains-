@@ -51,3 +51,156 @@ Masitortechnology/
 │       └── lib/
 │           └── ckeditor/
 
+
+
+You are an expert full-stack PHP developer. Build a **complete advanced B2B + B2C e-commerce CMS platform** from scratch using ONLY:
+- PHP 8+ (PDO, prepared statements, password_hash, no frameworks)
+- MySQL 8+ (with relational schema & foreign keys)
+- HTML5, CSS3 (Bootstrap 5 optional for styling), and vanilla JavaScript (no heavy JS frameworks).
+- Razorpay integration for payment processing.
+
+Deliverables:
+- A ready-to-run project with **frontend (customer site)** + **backend (admin CMS)**.
+- A single zip `b2b-b2c-ecommerce.zip` with all source code, `db.sql`, `README.md`, and demo credentials.
+
+---
+
+## 1. User Roles & Permissions
+- **Super Admin**: Full control (create admins, set permissions, configure settings).
+- **Admin**: Manage products, orders, blogs, categories, shipping, coupons, SEO, etc.
+- **Sub Admin**: Role-based permissions (can access only assigned modules like products or orders).
+- **B2B Seller**: Register with GST/company info, manage their products, check B2B orders.
+- **B2C Customer**: Register/login, browse products, place orders, track orders, manage profile.
+
+---
+
+## 2. Backend (Admin CMS)
+Admin Panel with **modular CRUD**:
+- **Dashboard**: KPIs (total customers, sellers, sales, revenue, pending orders).
+- **User Management**: Add/edit/delete admins, subadmins, sellers, customers.
+- **Permissions**: Granular permission system for subadmins (checkbox per module).
+- **Categories**: Full CRUD with parent-child hierarchy.
+- **Products**: Add/edit/delete with multiple images, SKU, stock, variants, status, SEO meta.
+- **Orders**: View all orders, update status (Pending → Processing → Shipped → Delivered / Cancelled / Refunded), assign shipping, invoice generation, Razorpay transaction logs.
+- **Coupons/Discounts**: CRUD with min amount, expiry, and usage limit.
+- **Shipping**: Add/edit shipping methods (flat rate, free shipping, per weight).
+- **Blog Management**: CRUD for posts, categories, tags, SEO.
+- **CMS Pages**: Editable About Us, Terms, Privacy Policy, Contact page.
+- **Settings**:
+  - Site branding (logo, favicon, address, social links).
+  - Payment settings (Razorpay key/secret).
+  - Email settings (SMTP for PHPMailer).
+  - SEO (title, description, keywords).
+- **Reports**: Download orders in CSV/XLSX, sales reports, top products.
+- **Notifications**: Email alerts to customers for order confirmation/status changes.
+
+---
+
+## 3. Frontend (Customer + Seller Facing)
+- **Homepage**: Featured products, categories, banners, blogs, offers.
+- **Category Page**: Product listing with filters (price, stock, brand, category), search, sort, pagination.
+- **Product Page**: Product gallery, description, reviews (basic rating system), related products.
+- **Cart & Checkout**:
+  - Session/cart table storage.
+  - Coupon code application.
+  - Shipping calculation.
+  - Order summary (with tax, discount, shipping).
+  - Razorpay checkout integration (test/live keys in config).
+- **Payment**:
+  - Server creates Razorpay order (PHP, store in DB).
+  - Customer completes checkout (Razorpay Checkout).
+  - Backend verifies payment signature before marking as paid.
+- **Customer Account**:
+  - Profile management.
+  - Address book.
+  - Order history (with tracking).
+  - Re-order option.
+- **B2B Seller Account**:
+  - Registration with GST/company info.
+  - Product upload (limited by admin approval).
+  - View seller-specific orders.
+- **Blog**:
+  - Blog listing with categories.
+  - Blog detail page (SEO optimized).
+- **CMS Pages**:
+  - About, Terms, Privacy, Contact (managed from admin).
+- **SEO Friendly URLs** (using `.htaccess`):
+  - `/category/shoes`
+  - `/product/nike-air-max`
+  - `/blog/benefits-of-ayurveda`
+
+---
+
+## 4. Database Design (Core Tables)
+- `users` (id, role_id, name, email, password, company_name, gst, status)
+- `roles` (superadmin, admin, subadmin, seller, customer)
+- `permissions` (role_id, module, can_create, can_read, can_update, can_delete)
+- `categories` (id, parent_id, name, slug, meta)
+- `products` (id, category_id, seller_id, name, sku, price, stock, description, status)
+- `product_images` (id, product_id, file, is_primary)
+- `orders` (id, user_id, total_amount, status, razorpay_order_id, razorpay_payment_id, payment_status)
+- `order_items` (id, order_id, product_id, qty, price)
+- `coupons` (id, code, discount_type, value, min_amount, expiry)
+- `shipping_methods` (id, name, cost, rules)
+- `blogs` (id, title, slug, content, meta, author_id)
+- `settings` (id, key, value)
+- `pages` (id, title, slug, content, meta)
+
+---
+
+## 5. Security & Best Practices
+- **Auth**: `password_hash()` + `password_verify()`.
+- **Sessions**: `session_regenerate_id()` on login.
+- **CSRF Protection**: Token validation in forms.
+- **SQL Security**: PDO + prepared statements only.
+- **File Uploads**: MIME/type check, random filenames, size restriction.
+- **Error Handling**: Log errors to `/storage/logs/`, never expose DB errors.
+- **Rate limiting**: Basic IP throttling on login attempts.
+- **SEO**: Dynamic meta tags, sitemap.xml, robots.txt.
+
+---
+
+## 6. Project Folder Structure
+
+---
+
+## 7. Order & Payment Workflow
+1. Customer adds products to cart → Checkout.
+2. Apply coupon → Calculate tax + shipping.
+3. Backend creates Razorpay order (`razorpay_order_id` stored in DB).
+4. Razorpay Checkout opens → Customer pays.
+5. Razorpay sends back `razorpay_payment_id` + `razorpay_signature`.
+6. Backend verifies signature → If valid, mark `orders.payment_status = paid`.
+7. Email confirmation sent to customer + admin.
+8. Admin processes order → updates status → shipping info → customer notified.
+
+---
+
+## 8. Documentation
+- `README.md` must include:
+  - Installation (XAMPP/WAMP).
+  - Database import (`db.sql`).
+  - Default superadmin login.
+  - Configuring Razorpay test/live keys.
+  - Switching from localhost to production.
+  - Security checklist.
+
+---
+
+## 9. Deliverables
+- `b2b-b2c-ecommerce.zip` containing:
+  - Source code with clean modular PHP.
+  - `db.sql` with schema + seed data.
+  - `README.md` with setup guide.
+  - `demo_credentials.txt` with default logins.
+
+---
+
+## 10. Bonus Features (Optional)
+- PDF invoice generation for orders.
+- Export orders & customers to CSV.
+- Wishlist + Recently viewed products.
+- Product ratings & reviews.
+- Live search (AJAX).
+- Low stock alert for admin.
+- Multi-language support (basic JSON file).
