@@ -206,7 +206,7 @@
                                     </div>
                                     <div class="contacts-title">
                                         <h5 class="text-white font-weight-600 display-28">Call Anytime</h5>
-                                        <h6 class="text-white font-weight-400">+1</h6>
+                                        <h6 class="text-white font-weight-400">+91 8045476031</h6>
                                     </div>
                                 </div>
                             </div>

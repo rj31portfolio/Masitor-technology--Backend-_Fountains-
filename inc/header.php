@@ -85,9 +85,13 @@ $conn->close();
                         <!-- Right buttons -->
                         <div class="attr-nav ms-lg-3">
                             <ul class="d-flex align-items-center gap-3 mb-0">       
-                                <li class=" d-xl-inline-block">
-                                    <a href="<?php echo BASE_URL; ?>contact-us.php" class="btn-style1 text-white btn-sm">Free Quote</a>
-                                </li>
+    <li class="d-xl-inline-block">
+    <a href="<?php echo BASE_URL; ?>catalog.pdf" class="btn-style1 text-white btn-sm" download>
+        <i class="fa fa-download"></i> Catalog
+    </a>
+</li>
+
+
                             </ul>
                         </div>
                     </div>
