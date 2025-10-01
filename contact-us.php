@@ -12,11 +12,11 @@
     <!-- Overlay -->
     <div style="background: rgba(0,0,0,0.6); position: absolute; top:0; left:0; width:100%; height:100%;"></div>
     <div class="container position-relative">
-        <h1 class="display-5 fw-bold mb-2 text-white">About Us</h1>
+        <h1 class="display-5 fw-bold mb-2 text-white">Contact Us</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="index.php" class="text-white text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item active text-white" aria-current="page">About Us</li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Contact Us</li>
             </ol>
         </nav>
     </div>

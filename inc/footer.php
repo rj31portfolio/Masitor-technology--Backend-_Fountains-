@@ -16,31 +16,7 @@
             </div>
             <div class="col-md-6 col-xl-4 mt-1-9">
                 <div>
-                    <form class="quform newsletter-form" action="<?php echo BASE_URL; ?>quform/newsletter-two.php" method="post" enctype="multipart/form-data">
-
-                        <div class="quform-elements">
-                            <div class="row">
-                                <!-- Begin Text input element -->
-                                <div class="col-md-12">
-                                    <div class="quform-element mb-0">
-                                        <div class="quform-input">
-                                            <input class="form-control" id="email_address" type="text" name="email_address" placeholder="Subscribe with us">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Text input element -->
-
-                                <!-- Begin Submit button -->
-                                <div class="col-md-12">
-                                    <div class="quform-submit-inner">
-                                        <button class="btn btn-white text-white m-0" type="submit"><i class="fas fa-paper-plane"></i></button>
-                                    </div>
-                                    <div class="quform-loading-wrap"><span class="quform-loading"></span></div>
-                                </div>
-                                <!-- End Submit button -->
-                            </div>
-                        </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
