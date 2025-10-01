@@ -62,8 +62,8 @@
                                 <p class="phone"><a href="tel:+918045476031" class="display-26 display-md-25 display-xl-24">+91-8045476031</a></p>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
-                            <div class="ps-lg-6">
+                        <div class="col-sm-6 col-lg-4 ">
+                            <div class="ps-lg-6 ">
                                 <h2 class="h5 text-primary mb-4">Our Social</h2>
                                 <ul class="social-icon-style4 list-unstyled mb-0">
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
