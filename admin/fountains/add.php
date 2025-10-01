@@ -58,10 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (!$error) {
             // Insert into database (add category_id)
-            $sql = "INSERT INTO fountains (category_id, title, slug, meta_description, feature_image, content, catalog_file, youtube_link, mrp_price, selling_price, status) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO fountains (category_id, title, slug, meta_description, feature_image, content, more_info, catalog_file, youtube_link, mrp_price, selling_price, status) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('isssssssdss', $categoryId, $title, $slug, $metaDescription, $featureImage, $content, $catalogFile, $youtubeLink, $mrpPrice, $sellingPrice, $status);
+            $stmt->bind_param('issssssssdss', $categoryId, $title, $slug, $metaDescription, $featureImage, $content, $moreInfo, $catalogFile, $youtubeLink, $mrpPrice, $sellingPrice, $status);
             
             if ($stmt->execute()) {
                 $fountainId = $stmt->insert_id;
@@ -206,6 +206,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            placeholder="Enter Selling Price">
                 </div>
                 
+                <div class="form-group">
+                    <label for="more_info">More Info</label>
+                    <textarea id="more_info" name="more_info" class="form-control"><?php echo isset($_POST['more_info']) ? htmlspecialchars($_POST['more_info']) : ''; ?></textarea>
+                </div>
+                
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Save Fountain
@@ -250,6 +255,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             { name: 'about', items: ['About'] }
         ],
         height: 400
+    });
+    
+    CKEDITOR.replace('more_info', {
+        height: 250
     });
     </script>
     

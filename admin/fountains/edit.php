@@ -51,11 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $removeFeatureImage = isset($_POST['remove_feature_image']);
     $removeCatalogFile = isset($_POST['remove_catalog_file']);
     $categoryId = (int)$_POST['category_id'];
-    $youtubeLink = isset($_POST['youtube_link']) ? trim($_POST['youtube_link']) : null;
-
-    // New: Get price fields
-    $mrpPrice = isset($_POST['mrp_price']) ? floatval($_POST['mrp_price']) : null;
-    $sellingPrice = isset($_POST['selling_price']) ? floatval($_POST['selling_price']) : null;
+    $youtubeLink = !empty($_POST['youtube_link']) ? trim($_POST['youtube_link']) : null;
+    $mrpPrice = isset($_POST['mrp_price']) && $_POST['mrp_price'] !== '' ? floatval($_POST['mrp_price']) : null;
+    $sellingPrice = isset($_POST['selling_price']) && $_POST['selling_price'] !== '' ? floatval($_POST['selling_price']) : null;
+    $moreInfo = !empty($_POST['more_info']) ? $_POST['more_info'] : null;
 
     // Validate inputs
     if (empty($title)) {
@@ -110,7 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($image = $imageResult->fetch_assoc()) {
                     deleteFile('uploads/fountains/gallery/' . $image['image_path']);
                 }
-                
                 $deleteSql = "DELETE FROM fountain_images WHERE id = ?";
                 $deleteStmt = $conn->prepare($deleteSql);
                 $deleteStmt->bind_param('i', $imageId);
@@ -142,12 +140,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         if (!$error) {
-            // Update fountain (add mrp_price and selling_price)
-            $sql = "UPDATE fountains SET title = ?, slug = ?, meta_description = ?, feature_image = ?, 
-                    content = ?, catalog_file = ?, youtube_link = ?, mrp_price = ?, selling_price = ?, status = ?, category_id = ? WHERE id = ?";
+            // ✅ Corrected bind_param types (match variables exactly)
+            $sql = "UPDATE fountains 
+                    SET title = ?, slug = ?, meta_description = ?, feature_image = ?, 
+                        content = ?, more_info = ?, catalog_file = ?, youtube_link = ?, 
+                        mrp_price = ?, selling_price = ?, status = ?, category_id = ? 
+                    WHERE id = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('ssssssssdsii', $title, $slug, $metaDescription, $featureImage, 
-                             $content, $catalogFile, $youtubeLink, $mrpPrice, $sellingPrice, $status, $categoryId, $fountainId);
+            // s=string, d=double, i=integer
+            $stmt->bind_param(
+                "ssssssssddssi",
+                $title,
+                $slug,
+                $metaDescription,
+                $featureImage,
+                $content,
+                $moreInfo,
+                $catalogFile,
+                $youtubeLink,
+                $mrpPrice,
+                $sellingPrice,
+                $status,
+                $categoryId,
+                $fountainId
+            );
 
             if ($stmt->execute()) {
                 $_SESSION['success'] = 'Fountain updated successfully!';
@@ -162,6 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -284,10 +301,14 @@ $conn->close();
                 </div>
                 
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select id="status" name="status" class="form-control">
-                        <option value="active" <?php echo $fountain['status'] === 'active' ? 'selected' : ''; ?>>Active</option>
-                        <option value="inactive" <?php echo $fountain['status'] === 'inactive' ? 'selected' : ''; ?>>Inactive</option>
+                    <label for="status">Status *</label>
+                    <?php
+                    // Use POST value if set, otherwise DB value, otherwise default to 'active'
+                    $selectedStatus = isset($_POST['status']) ? $_POST['status'] : ($fountain['status'] ?? 'active');
+                    ?>
+                    <select id="status" name="status" class="form-control" required>
+                        <option value="active" <?php echo $selectedStatus === 'active' ? 'selected' : ''; ?>>Active</option>
+                        <option value="inactive" <?php echo $selectedStatus === 'inactive' ? 'selected' : ''; ?>>Inactive</option>
                     </select>
                 </div>
 
@@ -298,7 +319,6 @@ $conn->close();
                         value="<?php echo isset($_POST['youtube_link']) ? htmlspecialchars($_POST['youtube_link']) : htmlspecialchars($fountain['youtube_link'] ?? ''); ?>"
                         placeholder="https://www.youtube.com/watch?v=...">
                 </div>
-
                 <!-- MRP Price Field -->
                 <div class="form-group">
                     <label for="mrp_price">MRP Price</label>
@@ -312,6 +332,12 @@ $conn->close();
                     <input type="number" step="0.01" id="selling_price" name="selling_price" class="form-control"
                         value="<?php echo isset($_POST['selling_price']) ? htmlspecialchars($_POST['selling_price']) : htmlspecialchars($fountain['selling_price'] ?? ''); ?>"
                         placeholder="Enter Selling Price">
+                </div>
+
+                <!-- More Info Field -->
+                <div class="form-group">
+                    <label for="more_info">More Info</label>
+                    <textarea id="more_info" name="more_info" class="form-control"><?php echo isset($_POST['more_info']) ? htmlspecialchars($_POST['more_info']) : htmlspecialchars($fountain['more_info'] ?? ''); ?></textarea>
                 </div>
                 
                 <div class="form-actions">
@@ -345,6 +371,9 @@ $conn->close();
             { name: 'about', items: ['About'] }
         ],
         height: 400
+    });
+    CKEDITOR.replace('more_info', {
+        height: 250
     });
     </script>
 </body>

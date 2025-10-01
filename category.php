@@ -37,8 +37,7 @@ while ($row = $fountainResult->fetch_assoc()) {
 
 $conn->close();
 ?>
-<?php require_once __DIR__."/inc/config.php"; ?>
-  <?php require_once __DIR__."/inc/head.php"; ?>
+
 
 <!-- HEADER
 ================================================== -->
