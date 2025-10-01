@@ -23,6 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $metaDescription = trim($_POST['meta_description']);
     $content = trim($_POST['content']);
     $status = $_POST['status'];
+
+    // FIX: Assign missing fields
+    $moreInfo = isset($_POST['more_info']) ? $_POST['more_info'] : '';
+    $youtubeLink = isset($_POST['youtube_link']) ? trim($_POST['youtube_link']) : '';
+    $mrpPrice = isset($_POST['mrp_price']) ? floatval($_POST['mrp_price']) : null;
+    $sellingPrice = isset($_POST['selling_price']) ? floatval($_POST['selling_price']) : null;
     
     // Validate inputs
     if (empty($title)) {
