@@ -131,11 +131,13 @@ if (!empty($fountain['youtube_link'])) {
 
 <!-- More Info Section -->
 <?php if (!empty($fountain['more_info'])): ?>
-<section class="bg-light py-4">
+<section class=" py-0">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <h3 class="mb-3">More Information</h3>
+        <h1 class="mb-3">More Information</h1>
+        <hr>
+        <br>
         <div class="more-info-content text-dark">
           <?php echo $fountain['more_info']; // CKEditor HTML ?>
         </div>
