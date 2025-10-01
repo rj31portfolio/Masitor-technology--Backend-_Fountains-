@@ -33,7 +33,7 @@ $headers .= "Reply-To: " . htmlspecialchars($email) . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-$body = "<h3>Contact Form Submission</h3>";
+$body = "<h3>Masitor Technology - Contact Form Submission</h3>";
 $body .= "<p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>";
 $body .= "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
 $body .= "<p><strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>";
