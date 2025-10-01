@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Category slug URLs
+RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?slug=$1 [L,QSA]
