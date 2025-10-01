@@ -1,9 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php';
-
 // Basic POST check
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
@@ -31,37 +26,25 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-// Send email using PHPMailer
-$mail = new PHPMailer(true);
-try {
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'yourgmail@gmail.com';     // replace
-    $mail->Password = 'your_app_password';       // use app password
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+// Prepare email
+$to = "info.errajuali@gmail.com"; // replace with your email
+$headers = "From: " . htmlspecialchars($name) . " <" . htmlspecialchars($email) . ">\r\n";
+$headers .= "Reply-To: " . htmlspecialchars($email) . "\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-    // From must be a valid sender; using the site mailbox. Set reply-to to user.
-    $mail->setFrom('yourgmail@gmail.com', 'Website Contact');
-    $mail->addReplyTo($email, $name);
-    $mail->addAddress('yourgmail@gmail.com', 'Site Owner');
+$body = "<h3>Contact Form Submission</h3>";
+$body .= "<p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>";
+$body .= "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
+$body .= "<p><strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>";
+$body .= "<p><strong>Message:</strong><br/>" . nl2br(htmlspecialchars($message)) . "</p>";
 
-    $mail->isHTML(true);
-    $mail->Subject = htmlspecialchars($subject);
-    $body = "<h3>Contact Form Submission</h3>";
-    $body .= "<p><strong>Name:</strong> " . htmlspecialchars($name) . "</p>";
-    $body .= "<p><strong>Email:</strong> " . htmlspecialchars($email) . "</p>";
-    $body .= "<p><strong>Phone:</strong> " . htmlspecialchars($phone) . "</p>";
-    $body .= "<p><strong>Message:</strong><br/>" . nl2br(htmlspecialchars($message)) . "</p>";
-
-    $mail->Body = $body;
-    $mail->send();
-
+// Send email
+if (mail($to, htmlspecialchars($subject), $body, $headers)) {
     echo "<script>alert('Message sent successfully!'); window.location.href='index.php';</script>";
     exit;
-} catch (Exception $e) {
-    // log error $mail->ErrorInfo if you want
-    echo "<script>alert('Message could not be sent. Mailer Error.'); window.history.back();</script>";
+} else {
+    echo "<script>alert('Message could not be sent.'); window.history.back();</script>";
     exit;
 }
+?>

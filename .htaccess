@@ -1,4 +1,8 @@
 RewriteEngine On
+RewriteBase /Masitortechnology/
 
-# Category slug URLs
-RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?slug=$1 [L,QSA]
+# Rewrite for category
+RewriteRule ^category/([a-zA-Z0-9-]+)/?$ category.php?slug=$1 [L,QSA]
+
+# (optional) rewrite for product
+RewriteRule ^product/([a-zA-Z0-9-]+)/?$ product.php?slug=$1 [L,QSA]
