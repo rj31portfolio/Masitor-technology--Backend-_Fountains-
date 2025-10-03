@@ -27,7 +27,7 @@
 
     <!-- ERROR PAGE
         ================================================== -->
-    <section class="p-0 bg-img bg-secondary cover-background" data-background="assets/img/content/error.jpg"
+<section class="p-0 bg-img bg-secondary cover-background" data-background="assets/img/content/error.jpg"
         style="background-image: url(&quot;assets/img/content/error.jpg&quot;);">
         <div class="container d-flex flex-column position-relative z-index-9">
             <div class="row align-items-center min-vh-100 text-center justify-content-center">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-    </section>
+</section>
 
 <!-- FOOTER
 ================================================== -->
