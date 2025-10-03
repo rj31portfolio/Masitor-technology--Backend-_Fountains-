@@ -13,7 +13,7 @@
     <meta name="description" content="Metary is a modern, responsive HTML template designed for industrial, factory, and power-technology businesses. Featuring ready-made pages like Services, Portfolio, Blog, Team, Pricing, and Contact.">
 
     <!-- title  -->
-    <title>MASITOR TECHNOLOGY COMPANIES</title>
+    <title>MASITOR TECHNOLOGY</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="<?php echo BASE_URL; ?>assets/img/logos/favicon.png">
     <link rel="apple-touch-icon" href="<?php echo BASE_URL; ?>assets/img/logos/apple-touch-icon-57x57.png">
