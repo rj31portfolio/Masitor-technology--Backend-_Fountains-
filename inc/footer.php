@@ -53,7 +53,7 @@
                     <div class="row pb-1-9 mt-n1-9">
                         <div class="col-md-7 mt-1-9">
                             <div class="text-center text-md-start">
-                                <p class="d-inline-block text-white mb-0">&copy; <span class="current-year"></span> MASITOR TECHNOLOGY COMPANIES. </p>
+                                <p class="d-inline-block text-white mb-0">&copy; <span class="current-year"></span> MASITOR TECHNOLOGY. </p>
                             </div>
                         </div>
                         <div class="col-md-5 mt-1-9">

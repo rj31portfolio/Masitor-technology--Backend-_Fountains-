@@ -52,11 +52,11 @@ $conn->close();
         });
     </script>
     <!-- Overlay content -->
-    <div class="banner-content position-absolute top-50 start-50 translate-middle text-center text-white px-3">
+    <!-- <div class="banner-content position-absolute top-50 start-50 translate-middle text-center text-white px-3">
         <h1 class="display-4 fw-bold text-white">Welcome to Our Website</h1>
         <p class="lead">Connecting You with Nature’s</p>
         <a href="#services" class="btn-style1 mt-3">Explore More</a>
-    </div>
+    </div> -->
 </section>
 
 <style>
