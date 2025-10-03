@@ -9,8 +9,8 @@
     <meta name="author" content="Website Layout">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Industry & Factory HTML Template">
-    <meta name="description" content="Metary is a modern, responsive HTML template designed for industrial, factory, and power-technology businesses. Featuring ready-made pages like Services, Portfolio, Blog, Team, Pricing, and Contact.">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
 
     <!-- title  -->
     <title>MASITOR TECHNOLOGY</title>
